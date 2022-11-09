@@ -5,8 +5,8 @@ import { trpc } from "../utils/trpc";
 
 export default function Home() {
   const { data, isLoading } = trpc.useQuery(["hello", { text: "Derek" }]);
-  if (isLoading) return <div>loading...</div>;
-  if (data) return <div>{data.greeting}</div>;
+  // if (isLoading) return <div>loading...</div>;
+  // if (data) return <div>{data.greeting}</div>;
   return (
     <>
       <Head>
@@ -22,7 +22,7 @@ export default function Home() {
         <div className="flex h-full w-full items-end justify-center pt-6 text-2xl text-blue-500">
           <div
             className="cursor-pointer"
-            onClick={() => Router.push("/results")}
+            // onClick={() => Router.push("/results")}
           >
             See Results
           </div>
