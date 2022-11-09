@@ -28,17 +28,19 @@ export default function Home() {
           </div>
         </div>
         <div className="mt-3 flex items-center justify-center gap-3 pt-3 text-center md:grid-cols-2 lg:w-2/3">
-          <CityCard
+          {/* <CityCard
             name="NextJS"
             description="The React framework for production"
             documentation="https://nextjs.org/"
-          />
+          /> */}
+          <div>{"I'm Tired"}</div>
           <div className="text-2xl text-green-700">VS</div>
-          <CityCard
+          {/* <CityCard
             name="TypeScript"
             description="The React framework for production"
             documentation="https://www.typescriptlang.org/"
-          />
+          /> */}
+          <div>{"I'm Still Tired"}</div>
         </div>
       </div>
     </>
