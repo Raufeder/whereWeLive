@@ -3,8 +3,9 @@ import Head from "next/head";
 import { trpc } from "../utils/trpc";
 import CityCard from "../components/CityCard";
 import { getOptionsForVote } from "../utils/getRandomCities";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { usePlausible } from "next-plausible";
+import Router from "next/router";
 
 export default function Home() {
   const [ids, updateIds] = useState(() => getOptionsForVote());
@@ -64,7 +65,7 @@ export default function Home() {
         <div className="flex h-full w-full items-end justify-center pt-6 text-2xl text-blue-500">
           <div
             className="cursor-pointer"
-            // onClick={() => Router.push("/results")}
+            onClick={() => Router.push("/results")}
           >
             See Results
           </div>
