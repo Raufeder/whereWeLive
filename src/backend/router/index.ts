@@ -10,7 +10,7 @@ export const appRouter = trpc
       const [first, second] = getOptionsForVote();
 
       const bothCities = await prisma.city.findMany({
-        where: { id: { in: [first, second] } },
+        where: { id: { in: [first, second] }},
       });
 
       if (bothCities.length !== 2)
