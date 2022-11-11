@@ -12,8 +12,6 @@ export default function Home() {
 
   const [first, second] = ids;
 
-  console.log(process.env.DATABASE_URL);
-
   const {
     data: cityPair,
     refetch,
@@ -26,8 +24,6 @@ export default function Home() {
 
   const voteMutation = trpc.useMutation(["cast-vote"]);
   const plausible = usePlausible();
-
-  console.log(cityPair);
 
   const voteForBetter = (selected: number) => {
     if (!cityPair) return; // Early escape to make Typescript happy
