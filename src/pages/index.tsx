@@ -2,9 +2,19 @@ import Head from "next/head";
 // // import Router from "next/router";
 import { trpc } from "../utils/trpc";
 import CityCard from "../components/CityCard";
+import { getOptionsForVote } from "../utils/getRandomCities";
+import { useEffect, useState } from "react";
 
 export default function Home() {
   const { data, isLoading } = trpc.useQuery(["hello", { text: "Derek" }]);
+  const [first, setFirst] = useState(0);
+  const [second, setSecond] = useState(0);
+
+  useEffect(() => {
+    const [firstNum, secondNum] = getOptionsForVote();
+    setFirst(firstNum);
+    setSecond(secondNum);
+  }, []);
   // if (isLoading) return <div>loading...</div>;
   // if (data) return <div>{data.greeting}</div>;
   return (
@@ -28,17 +38,19 @@ export default function Home() {
           </div>
         </div>
         <div className="mt-3 flex items-center justify-center gap-3 pt-3 text-center md:grid-cols-2 lg:w-2/3">
-          <CityCard
+          {/* <CityCard
             name="NextJS"
             description="The React framework for production"
             documentation="https://nextjs.org/"
-          />
+          /> */}
+          {first}
           <div className="text-2xl text-green-700">VS</div>
-          <CityCard
+          {/* <CityCard
             name="TypeScript"
             description="The React framework for production"
             documentation="https://www.typescriptlang.org/"
-          />
+          /> */}
+          {second}
         </div>
       </div>
     </>
