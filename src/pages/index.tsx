@@ -12,6 +12,8 @@ export default function Home() {
 
   const [first, second] = ids;
 
+  console.log(process.env.DATABASE_URL);
+
   const {
     data: cityPair,
     refetch,

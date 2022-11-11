@@ -3,7 +3,7 @@
 
 datasource db {
   provider             = "mysql"
-  url                  = env("DATABASE_URL")
+  url                  = "https://where-we-live.vercel.app/"
   referentialIntegrity = "prisma"
 }
 
