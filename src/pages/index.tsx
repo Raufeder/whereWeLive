@@ -4,19 +4,51 @@ import { trpc } from "../utils/trpc";
 import CityCard from "../components/CityCard";
 import { getOptionsForVote } from "../utils/getRandomCities";
 import { useEffect, useState } from "react";
+import { usePlausible } from "next-plausible";
 
 export default function Home() {
-  const { data, isLoading } = trpc.useQuery(["hello", { text: "Derek" }]);
-  const [first, setFirst] = useState(0);
-  const [second, setSecond] = useState(0);
+  const [ids, updateIds] = useState(() => getOptionsForVote());
 
-  useEffect(() => {
-    const [firstNum, secondNum] = getOptionsForVote();
-    setFirst(firstNum);
-    setSecond(secondNum);
-  }, []);
-  // if (isLoading) return <div>loading...</div>;
-  // if (data) return <div>{data.greeting}</div>;
+  const [first, second] = ids;
+
+  const {
+    data: cityPair,
+    refetch,
+    isLoading,
+  } = trpc.useQuery(["get-city-pair"], {
+    refetchInterval: false,
+    refetchOnReconnect: false,
+    refetchOnWindowFocus: false,
+  });
+
+  const voteMutation = trpc.useMutation(["cast-vote"]);
+  const plausible = usePlausible();
+
+  console.log(cityPair);
+
+  const voteForBetter = (selected: number) => {
+    if (!cityPair) return; // Early escape to make Typescript happy
+
+    if (selected === cityPair?.firstCity.id) {
+      // If voted for 1st pokemon, fire voteFor with first ID
+      voteMutation.mutate({
+        votedFor: cityPair.firstCity.id,
+        votedAgainst: cityPair.secondCity.id,
+      });
+    } else {
+      // else fire voteFor with second ID
+      voteMutation.mutate({
+        votedFor: cityPair.secondCity.id,
+        votedAgainst: cityPair.firstCity.id,
+      });
+    }
+
+    plausible("cast-vote");
+    refetch();
+  };
+
+  const fetchingNext = voteMutation.isLoading || isLoading;
+
   return (
     <>
       <Head>
@@ -37,21 +69,57 @@ export default function Home() {
             See Results
           </div>
         </div>
-        <div className="mt-3 flex items-center justify-center gap-3 pt-3 text-center md:grid-cols-2 lg:w-2/3">
-          {/* <CityCard
-            name="NextJS"
-            description="The React framework for production"
-            documentation="https://nextjs.org/"
-          /> */}
-          {first}
-          <div className="text-2xl text-green-700">VS</div>
-          {/* <CityCard
-            name="TypeScript"
-            description="The React framework for production"
-            documentation="https://www.typescriptlang.org/"
-          /> */}
-          {second}
-        </div>
+        {cityPair && (
+          <div className="mt-3 flex items-center justify-center gap-3 pt-3 text-center md:grid-cols-2 lg:w-2/3">
+            <div className="flex flex-col items-center justify-center">
+              <CityCard
+                cityName={cityPair.firstCity.city}
+                averageRent={cityPair.firstCity.averageRent}
+                bikeScore={cityPair.firstCity.bikeScore}
+                crimePercentile={cityPair.firstCity.crimePercentile}
+                nonViolentCrime={cityPair.firstCity.nonViolentCrime}
+                population={cityPair.firstCity.population}
+                region={cityPair.firstCity.region}
+                regionCode={cityPair.firstCity.regionCode}
+                transitScore={cityPair.firstCity.transitScore}
+                violentCrime={cityPair.firstCity.violentCrime}
+                walkScore={cityPair.firstCity.walkScore}
+              />
+              <div className="pt-4">
+                <button
+                  onClick={() => voteForBetter(cityPair.firstCity.id)}
+                  className="inline-flex items-center px-3 py-1.5 border border-gray-300 shadow-sm font-medium rounded-full text-gray-700 bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                >
+                  Id Rather Live Here
+                </button>
+              </div>
+            </div>
+            <div className="text-2xl text-green-700">VS</div>
+            <div className="flex flex-col items-center justify-center">
+              <CityCard
+                cityName={cityPair.secondCity.city}
+                averageRent={cityPair.secondCity.averageRent}
+                bikeScore={cityPair.secondCity.bikeScore}
+                crimePercentile={cityPair.secondCity.crimePercentile}
+                nonViolentCrime={cityPair.secondCity.nonViolentCrime}
+                population={cityPair.secondCity.population}
+                region={cityPair.secondCity.region}
+                regionCode={cityPair.secondCity.regionCode}
+                transitScore={cityPair.secondCity.transitScore}
+                violentCrime={cityPair.secondCity.violentCrime}
+                walkScore={cityPair.secondCity.walkScore}
+              />
+              <div className="pt-4">
+                <button
+                  onClick={() => voteForBetter(cityPair.secondCity.id)}
+                  className="inline-flex items-center px-3 py-1.5 border border-gray-300 shadow-sm font-medium rounded-full text-gray-700 bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                >
+                  Id Rather Live Here
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </>
   );
