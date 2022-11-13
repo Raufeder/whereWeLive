@@ -1,4 +1,5 @@
-import Link from "next/link";
+import React from "react";
+import Tippy from "@tippyjs/react";
 
 type CityCardProps = {
   averageRent: number;
@@ -29,16 +30,39 @@ const CityCard: React.FC<CityCardProps> = ({
 }) => {
   return (
     <section className="flex flex-col items-center justify-center rounded border-2 border-gray-500 bg-white p-6 shadow-xl duration-500 motion-safe:hover:scale-105">
-      <h2 className="text-lg text-green-700">{cityName}</h2>
-      <p className="text-sm text-green-600">{averageRent}</p>
-      {/* <Link
-        className="m-auto mt-3 w-fit text-sm text-violet-500 underline decoration-dotted underline-offset-2"
-        href={documentation}
-        target="_blank"
-        rel="noreferrer"
-      >
-        Documentation
-      </Link> */}
+      <h2 className="text-3xl text-green-700 font-bold pb-4">{`${cityName}, ${region}`}</h2>
+      <div className="flex items-center justify-between w-full">
+        <p className="text-md text-green-600">{`Population: `}</p>
+        <span className="font-bold">{`${population}`}</span>
+      </div>
+      <div className="flex items-center justify-between w-full">
+        <p className="text-md text-green-600">{`Average Rent: `}</p>
+        <span className="font-bold">{`$${averageRent}`}</span>
+      </div>
+      <div className="flex items-center justify-between w-full whitespace-nowrap">
+        <p className="text-md text-green-600">{`Non-Violent Crime: (Per Thousand Residents)`}</p>
+        <span className="font-bold">{`${nonViolentCrime}`}</span>
+      </div>
+      <div className="flex items-center justify-between w-full">
+        <p className="text-md text-green-600">{`Violent Crime: (Per Thousand Residents)`}</p>
+        <span className="font-bold">{`${violentCrime}`}</span>
+      </div>
+      <div className="flex items-center justify-between w-full">
+        <p className="text-md text-green-600">{`Crime Percentile: `}</p>
+        <span className="font-bold">{`${crimePercentile}`}</span>
+      </div>
+      <div className="flex items-center justify-between w-full">
+        <p className="text-md text-green-600">{`Walkability: `}</p>
+        <span className="font-bold">{`${walkScore}`}</span>
+      </div>
+      <div className="flex items-center justify-between w-full">
+        <p className="text-md text-green-600">{`Bikeability: `}</p>
+        <span className="font-bold">{`${bikeScore}`}</span>
+      </div>
+      <div className="flex items-center justify-between w-full">
+        <p className="text-md text-green-600">{`Public Transit: `}</p>
+        <p className="font-bold">{`${transitScore}`}</p>
+      </div>
     </section>
   );
 };
