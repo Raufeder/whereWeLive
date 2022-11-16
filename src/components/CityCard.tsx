@@ -33,35 +33,35 @@ const CityCard: React.FC<CityCardProps> = ({
       <h2 className="text-3xl text-green-700 font-bold pb-4">{`${cityName}, ${region}`}</h2>
       <div className="flex items-center justify-between w-full">
         <p className="text-md text-green-600">{`Population: `}</p>
-        <span className="font-bold">{`${population}`}</span>
+        <span className="font-bold pl-2">{`${population}`}</span>
       </div>
       <div className="flex items-center justify-between w-full">
         <p className="text-md text-green-600">{`Average Rent: `}</p>
-        <span className="font-bold">{`$${averageRent}`}</span>
+        <span className="font-bold pl-2">{`$${averageRent}`}</span>
       </div>
       <div className="flex items-center justify-between w-full whitespace-nowrap">
-        <p className="text-md text-green-600">{`Non-Violent Crime: (Per Thousand Residents)`}</p>
-        <span className="font-bold">{`${nonViolentCrime}`}</span>
+        <p className="text-md text-green-600">{`Non-Violent Crime:`}</p>
+        <span className="font-bold pl-2">{`${nonViolentCrime}/1000`}</span>
       </div>
       <div className="flex items-center justify-between w-full whitespace-nowrap">
-        <p className="text-md text-green-600">{`Violent Crime: (Per Thousand Residents)`}</p>
-        <span className="font-bold">{`${violentCrime}`}</span>
+        <p className="text-md text-green-600">{`Violent Crime:`}</p>
+        <span className="font-bold pl-2">{`${violentCrime}/1000`}</span>
       </div>
       <div className="flex items-center justify-between w-full">
         <p className="text-md text-green-600">{`Crime Percentile: `}</p>
-        <span className="font-bold">{`${crimePercentile}`}</span>
+        <span className="font-bold pl-2">{`${crimePercentile}`}</span>
       </div>
       <div className="flex items-center justify-between w-full">
         <p className="text-md text-green-600">{`Walkability: `}</p>
-        <span className="font-bold">{`${walkScore}`}</span>
+        <span className="font-bold pl-2">{`${walkScore}`}</span>
       </div>
       <div className="flex items-center justify-between w-full">
         <p className="text-md text-green-600">{`Bikeability: `}</p>
-        <span className="font-bold">{`${bikeScore}`}</span>
+        <span className="font-bold pl-2">{`${bikeScore}`}</span>
       </div>
       <div className="flex items-center justify-between w-full">
         <p className="text-md text-green-600">{`Public Transit: `}</p>
-        <p className="font-bold">{`${transitScore}`}</p>
+        <p className="font-bold pl-2">{`${transitScore}`}</p>
       </div>
     </section>
   );
