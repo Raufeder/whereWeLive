@@ -56,21 +56,13 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="flex min-h-screen flex-col items-center justify-center bg-slate-700 p-4">
-        <h1 className="text-5xl font-extrabold leading-normal text-green-700 md:text-[5rem]">
+      <div className="md:flex min-h-screen md:flex-col items-center justify-center bg-slate-700 p-4">
+        <h1 className="text-5xl font-extrabold leading-normal text-green-400 md:text-[5rem] text-center">
           {"Pick Which Place You'd Rather Live"}
         </h1>
-        <div className="flex h-full w-full items-end justify-center pt-6 text-2xl text-blue-500">
-          <div
-            className="cursor-pointer"
-            onClick={() => Router.push("/results")}
-          >
-            See Results
-          </div>
-        </div>
         {cityPair && (
-          <div className="mt-3 flex items-center justify-center gap-3 pt-3 text-center md:grid-cols-2 lg:w-2/3">
-            <div className="flex flex-col items-center justify-center">
+          <div className="mt-3 flex flex-col lg:flex-row items-center justify-center pt-3 text-center">
+            <div>
               <CityCard
                 cityName={cityPair.firstCity.city}
                 averageRent={cityPair.firstCity.averageRent}
@@ -93,8 +85,8 @@ export default function Home() {
                 </button>
               </div>
             </div>
-            <div className="text-2xl text-green-700">VS</div>
-            <div className="flex flex-col items-center justify-center">
+            <div className="text-2xl text-green-700 p-4">VS</div>
+            <div>
               <CityCard
                 cityName={cityPair.secondCity.city}
                 averageRent={cityPair.secondCity.averageRent}
@@ -119,6 +111,14 @@ export default function Home() {
             </div>
           </div>
         )}
+        <div className="flex h-full w-full items-end justify-center pt-6 text-2xl text-blue-500">
+          <div
+            className="cursor-pointer"
+            onClick={() => Router.push("/results")}
+          >
+            See Results
+          </div>
+        </div>
       </div>
     </>
   );

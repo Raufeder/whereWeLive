@@ -4,6 +4,7 @@ This app simply is used to pick what city my partner and I pick which city we wo
 
 //Short Term TODOS
 //TODO ! Style App
+//TODO ! Show City Data on Hover of Results Page
 //TODO ! Mobile Freindly
 //TODO ! Dynamically Show Color for how good each thing is
 //TODO ! Work on Implimenting Tippy

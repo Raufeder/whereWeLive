@@ -29,7 +29,7 @@ const CityCard: React.FC<CityCardProps> = ({
   walkScore,
 }) => {
   return (
-    <section className="flex flex-col items-center justify-center rounded border-2 border-gray-500 bg-white p-6 shadow-xl duration-500 motion-safe:hover:scale-105">
+    <section className="flex flex-col items-center justify-center rounded border-2 border-gray-500 bg-white p-6 shadow-xl duration-500">
       <h2 className="text-3xl text-green-700 font-bold pb-4">{`${cityName}, ${region}`}</h2>
       <div className="flex items-center justify-between w-full">
         <p className="text-md text-green-600">{`Population: `}</p>
@@ -43,7 +43,7 @@ const CityCard: React.FC<CityCardProps> = ({
         <p className="text-md text-green-600">{`Non-Violent Crime: (Per Thousand Residents)`}</p>
         <span className="font-bold">{`${nonViolentCrime}`}</span>
       </div>
-      <div className="flex items-center justify-between w-full">
+      <div className="flex items-center justify-between w-full whitespace-nowrap">
         <p className="text-md text-green-600">{`Violent Crime: (Per Thousand Residents)`}</p>
         <span className="font-bold">{`${violentCrime}`}</span>
       </div>
