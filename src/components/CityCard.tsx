@@ -30,7 +30,7 @@ const CityCard: React.FC<CityCardProps> = ({
 }) => {
   return (
     <section className=" lg:w-[600px] flex flex-col items-center justify-center rounded border-2 border-gray-500 bg-white p-6 shadow-xl duration-500 w-full">
-      <h2 className="text-3xl text-green-700 font-bold pb-4">{`${cityName}, ${region}`}</h2>
+      <h2 className="text-lg lg:text-3xl text-green-700 font-bold pb-4">{`${cityName}, ${region}`}</h2>
       <div className="flex items-center justify-between w-full">
         <p className="text-md text-green-600">{`Population: `}</p>
         <span className="font-bold pl-2">{`${population}`}</span>
