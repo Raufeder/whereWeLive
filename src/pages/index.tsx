@@ -56,12 +56,12 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="md:flex min-h-screen md:flex-col items-center justify-center bg-slate-700 p-4">
+      <div className="md:flex min-h-screen md:flex-col items-center justify-center bg-slate-700 p-4 w-full">
         <h1 className="text-5xl font-extrabold leading-normal text-green-400 md:text-[5rem] text-center">
           {"Pick Which Place You'd Rather Live"}
         </h1>
         {cityPair && (
-          <div className="mt-3 flex flex-col lg:flex-row items-center justify-center pt-3 text-center">
+          <div className="mt-3 flex flex-col lg:flex-row items-center justify-center pt-3 text-center w-full">
             <div>
               <CityCard
                 cityName={cityPair.firstCity.city}
