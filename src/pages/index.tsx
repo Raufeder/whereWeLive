@@ -56,8 +56,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="md:flex min-h-screen md:flex-col items-center justify-center bg-slate-700 p-4 w-full">
-        <h1 className="text-5xl font-extrabold leading-normal text-green-400 md:text-[5rem] text-center">
+      <div className="md:flex min-h-screen md:flex-col items-center justify-center bg-slate-900 p-4 w-full text-gray-300">
+        <h1 className="text-5xl font-extrabold leading-normal md:text-[5rem] text-center">
           {"Pick Which Place You'd Rather Live"}
         </h1>
         {cityPair && (
@@ -79,13 +79,13 @@ export default function Home() {
               <div className="pt-4">
                 <button
                   onClick={() => voteForBetter(cityPair.firstCity.id)}
-                  className="inline-flex items-center px-3 py-1.5 border border-gray-300 shadow-sm font-medium rounded-full text-gray-700 bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  className="inline-flex items-center px-3 py-1.5 bg-slate-800 hover:bg-slate-600 border-2 border-slate-700 shadow-sm font-medium rounded-full   focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
                   Id Rather Live Here
                 </button>
               </div>
             </div>
-            <div className="text-2xl text-green-700 p-4">VS</div>
+            <div className="text-2xl p-4">VS</div>
             <div>
               <CityCard
                 cityName={cityPair.secondCity.city}
@@ -103,7 +103,7 @@ export default function Home() {
               <div className="pt-4">
                 <button
                   onClick={() => voteForBetter(cityPair.secondCity.id)}
-                  className="inline-flex items-center px-3 py-1.5 border border-gray-300 shadow-sm font-medium rounded-full text-gray-700 bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  className="inline-flex items-center px-3 py-1.5 bg-slate-800 hover:bg-slate-600 border-2 border-slate-700 shadow-sm font-medium rounded-full   focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
                   Id Rather Live Here
                 </button>
@@ -116,7 +116,7 @@ export default function Home() {
             className="cursor-pointer"
             onClick={() => Router.push("/results")}
           >
-            See Results
+            See Our Favorite Cities
           </div>
         </div>
       </div>

@@ -40,15 +40,15 @@ const CityListing: React.FC<{
   rank: number;
 }> = ({ city, rank }) => {
   return (
-    <div className="relative flex border-b p-2 items-center justify-between">
+    <div className="relative flex border-b p-2 items-center justify-between text-gray-300">
       <div className="flex items-center">
         <div className="flex items-center justify-center pl-10">
-          <div className="pl-2 capitalize font-bold text-xl text-center text-green-400">
+          <div className="pl-2 capitalize font-bold text-xl text-center ">
             {city.city}, {city.regionCode}
           </div>
         </div>
       </div>
-      <div className="pr-4 font-bold text-green-400">
+      <div className="pr-4 font-bold ">
         {generateCountPercent(city).toFixed(2) + "%"}
       </div>
       <div className="absolute top-0 left-0 z-20 flex items-center justify-center px-2 font-semibold text-white bg-gray-600 border border-gray-500 shadow-lg rounded-br-md">
@@ -62,11 +62,11 @@ const ResultsPage: React.FC<{
   city: CityQueryResult;
 }> = (props) => {
   return (
-    <div className="flex flex-col items-center bg-slate-700">
+    <div className="flex flex-col items-center bg-slate-900">
       <Head>
         <title>Our Favorite Cities</title>
       </Head>
-      <h1 className="text-5xl font-extrabold leading-normal text-green-700 md:text-[5rem] text-center">
+      <h1 className="text-5xl font-extrabold leading-normal text-gray-300 md:text-[5rem] text-center">
         {"Our Favorite Cities"}
       </h1>
       <h1
