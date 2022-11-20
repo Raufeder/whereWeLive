@@ -80,6 +80,7 @@ export default function Home() {
                 <button
                   onClick={() => voteForBetter(cityPair.firstCity.id)}
                   className="inline-flex items-center px-3 py-1.5 bg-slate-800 hover:bg-slate-600 border-2 border-slate-700 shadow-sm font-medium rounded-full   focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  disabled={fetchingNext}
                 >
                   Id Rather Live Here
                 </button>
@@ -104,11 +105,17 @@ export default function Home() {
                 <button
                   onClick={() => voteForBetter(cityPair.secondCity.id)}
                   className="inline-flex items-center px-3 py-1.5 bg-slate-800 hover:bg-slate-600 border-2 border-slate-700 shadow-sm font-medium rounded-full   focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  disabled={fetchingNext}
                 >
                   Id Rather Live Here
                 </button>
               </div>
             </div>
+          </div>
+        )}
+        {!cityPair && (
+          <div className="mt-3 flex flex-col lg:flex-row items-center justify-center pt-3 text-center w-full">
+            Loading...
           </div>
         )}
         <div className="flex h-full w-full items-end justify-center pt-6 text-2xl text-blue-500">
