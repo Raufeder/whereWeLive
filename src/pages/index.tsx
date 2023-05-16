@@ -75,6 +75,7 @@ export default function Home() {
                 transitScore={cityPair.firstCity.transitScore}
                 violentCrime={cityPair.firstCity.violentCrime}
                 walkScore={cityPair.firstCity.walkScore}
+                id={cityPair.firstCity.id}
               />
               <div className="pt-4">
                 <button
@@ -100,6 +101,7 @@ export default function Home() {
                 transitScore={cityPair.secondCity.transitScore}
                 violentCrime={cityPair.secondCity.violentCrime}
                 walkScore={cityPair.secondCity.walkScore}
+                id={cityPair.secondCity.id}
               />
               <div className="pt-4">
                 <button

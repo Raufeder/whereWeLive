@@ -1,5 +1,6 @@
 import React from "react";
 import Tippy from "@tippyjs/react";
+import Router from "next/router";
 
 type CityCardProps = {
   averageRent: number;
@@ -13,6 +14,7 @@ type CityCardProps = {
   transitScore: number;
   violentCrime: number;
   walkScore: number;
+  id: number;
 };
 
 const CityCard: React.FC<CityCardProps> = ({
@@ -27,9 +29,13 @@ const CityCard: React.FC<CityCardProps> = ({
   transitScore,
   violentCrime,
   walkScore,
+  id,
 }) => {
   return (
-    <section className=" lg:w-[600px] shadow-2xl flex flex-col items-center justify-center rounded  bg-slate-800 border-2 border-slate-700 p-6 duration-500 w-full text-gray-300">
+    <section
+      // onClick={() => Router.push(`/city/${id}`)}
+      className=" hover:scale-105 lg:w-[600px] shadow-2xl flex flex-col items-center justify-center rounded  bg-slate-800 border-2 border-slate-700 p-6 duration-500 w-full text-gray-300"
+    >
       <h2 className="text-lg lg:text-3xl font-bold pb-4">{`${cityName}, ${region}`}</h2>
       <div className="flex items-center justify-between w-full">
         <p className="text-md">{`Population: `}</p>

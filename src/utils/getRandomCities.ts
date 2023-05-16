@@ -1,17 +1,17 @@
 const MAX_DEX_ID = 54;
 
-const getRandomPokemon: (notThisOne?: number) => number = (
+const getRandomCity: (notThisOne?: number) => number = (
   notThisOne
 ) => {
   const pokedexNumber = Math.floor(Math.random() * MAX_DEX_ID) + 1;
 
   if (pokedexNumber !== notThisOne) return pokedexNumber;
-  return getRandomPokemon(notThisOne);
+  return getRandomCity(notThisOne);
 };
 
 export const getOptionsForVote = () => {
-  const firstId = getRandomPokemon();
-  const secondId = getRandomPokemon(firstId);
+  const firstId = getRandomCity();
+  const secondId = getRandomCity(firstId);
 
   return [firstId, secondId];
 };

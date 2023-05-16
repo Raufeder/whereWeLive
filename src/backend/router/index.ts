@@ -10,13 +10,29 @@ export const appRouter = trpc
       const [first, second] = getOptionsForVote();
 
       const bothCities = await prisma.city.findMany({
-        where: { id: { in: [first, second] }},
+        where: { id: { in: [first, second] } },
       });
 
       if (bothCities.length !== 2)
         throw new Error("Failed to find two cities");
 
       return { firstCity: bothCities[0], secondCity: bothCities[1] };
+    },
+  })
+  .query("get-city", {
+    input: z.object({
+      id: z.number(),
+    }),
+    async resolve({ input }) {
+
+      const city = await prisma.city.findUnique({
+        where: { id: input.id },
+      });
+
+      if (!city)
+        throw new Error("Failed to find city");
+
+      return city;
     },
   })
   .mutation("cast-vote", {
