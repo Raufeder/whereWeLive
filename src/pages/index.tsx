@@ -2,16 +2,10 @@ import Head from "next/head";
 // // import Router from "next/router";
 import { trpc } from "../utils/trpc";
 import CityCard from "../components/CityCard";
-import { getOptionsForVote } from "../utils/getRandomCities";
-import { useState } from "react";
 import { usePlausible } from "next-plausible";
 import Router from "next/router";
 
 export default function Home() {
-  const [ids, updateIds] = useState(() => getOptionsForVote());
-
-  const [first, second] = ids;
-
   const {
     data: cityPair,
     refetch,
