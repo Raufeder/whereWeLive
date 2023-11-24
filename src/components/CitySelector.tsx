@@ -35,9 +35,11 @@ const CitySelector: React.FC<{
         Click to play more
       </h1>
       <div className="flex flex-col w-full max-w-2xl border">
-        {citiesOrdered.map((currentCity: any, index: any) => {
-          return <CityListing city={currentCity} key={index} />;
-        })}
+        {citiesOrdered
+          ? citiesOrdered.map((currentCity: any, index: any) => {
+              return <CityListing city={currentCity} key={index} />;
+            })
+          : null}
       </div>
     </div>
   );
