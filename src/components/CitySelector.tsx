@@ -1,169 +1,44 @@
-"use client";
-
-import React from "react";
-import Tippy from "@tippyjs/react";
 import Router from "next/router";
-import { trpc } from "../utils/trpc";
+import Head from "next/head";
 
-const CitySelector: React.FC = ({}) => {
-  const cityList = trpc.useQuery(["get-city-list"], { refetchInterval: false });
-
-  const { data } = cityList;
-
-  console.log(data);
-
+const CityListing: React.FC<{
+  city: { id: Number; city: String; regionCode: String };
+}> = ({ city }) => {
   return (
-    <div className="md:flex min-h-screen items-center justify-between bg-slate-900 p-4 w-full text-gray-300">
-      {/* <section className="flex flex-col items-center justify-center h-full p-6 text-gray-300 m-4">
-        <h2 className="text-lg lg:text-3xl font-bold pb-4">{`${data?.city}, ${data?.region}`}</h2>
-        <div className="flex items-center justify-between w-full">
-          <p className="text-md">{`Population: `}</p>
-          <span className="font-bold pl-2">{`${data?.population}`}</span>
+    <div className="relative flex border-b p-2 items-center justify-between text-gray-300">
+      <div className="flex items-center">
+        <div className="flex items-center justify-center pl-10">
+          <div className="pl-2 capitalize font-bold text-xl text-center ">
+            {city.city}, {city.regionCode}
+          </div>
         </div>
-        <div className="flex items-center justify-between w-full">
-          <p className="text-md ">{`Average Rent: `}</p>
-          <span
-            className={`font-bold pl-2 ${
-              data?.averageRent && data?.averageRent <= 1000
-                ? "text-green-600"
-                : data?.averageRent && data?.averageRent <= 2000
-                ? "text-yellow-500"
-                : "text-red-500"
-            }`}
-          >{`$${data?.averageRent}`}</span>
-        </div>
-        <div className="flex items-center justify-between w-full whitespace-nowrap">
-          <p className="text-md ">{`Non-Violent Crime:`}</p>
-          <span className="font-bold pl-2">{`${data?.nonViolentCrime}/1000`}</span>
-        </div>
-        <div className="flex items-center justify-between w-full whitespace-nowrap">
-          <p className="text-md ">{`Violent Crime:`}</p>
-          <span className="font-bold pl-2">{`${data?.violentCrime}/1000`}</span>
-        </div>
-        <div className="flex items-center justify-between w-full">
-          <p className="text-md ">{`Crime Percentile: `}</p>
-          <span
-            className={`font-bold pl-2 ${
-              data?.crimePercentile && data?.crimePercentile <= 5
-                ? "text-red-500"
-                : data?.crimePercentile && data?.crimePercentile <= 15
-                ? "text-yellow-500"
-                : "text-green-600"
-            }`}
-          >{`${data?.crimePercentile}`}</span>
-        </div>
-        <div className="flex items-center justify-between w-full">
-          <p className="text-md ">{`Walkability: `}</p>
-          <span
-            className={`font-bold pl-2 ${
-              data?.walkScore && data?.walkScore <= 33
-                ? "text-red-500"
-                : data?.walkScore && data?.walkScore <= 66
-                ? "text-yellow-500"
-                : "text-green-600"
-            }`}
-          >{`${data?.walkScore}`}</span>
-        </div>
-        <div className="flex items-center justify-between w-full">
-          <p className="text-md ">{`Bikeability: `}</p>
-          <span
-            className={`font-bold pl-2 ${
-              data?.bikeScore && data?.bikeScore <= 33
-                ? "text-red-500"
-                : data?.bikeScore && data?.bikeScore <= 66
-                ? "text-yellow-500"
-                : "text-green-600"
-            }`}
-          >{`${data?.bikeScore}`}</span>
-        </div>
-        <div className="flex items-center justify-between w-full">
-          <p className="text-md ">{`Public Transit: `}</p>
-          <p
-            className={`font-bold pl-2 ${
-              data?.transitScore && data?.transitScore <= 33
-                ? "text-red-500"
-                : data?.transitScore && data?.transitScore <= 66
-                ? "text-yellow-500"
-                : "text-green-600"
-            }`}
-          >{`${data?.transitScore}`}</p>
-        </div>
-      </section>
-      <section className="lg:w-[600px] flex flex-col items-center justify-center rounded  bg-slate-800 p-6 w-full text-gray-300">
-        <h2 className="text-lg lg:text-3xl font-bold pb-4">{`${data?.city}, ${data?.region}`}</h2>
-        <div className="flex items-center justify-between w-full">
-          <p className="text-md">{`Population: `}</p>
-          <span className="font-bold pl-2">{`${data?.population}`}</span>
-        </div>
-        <div className="flex items-center justify-between w-full">
-          <p className="text-md ">{`Average Rent: `}</p>
-          <span
-            className={`font-bold pl-2 ${
-              data?.averageRent && data?.averageRent <= 1000
-                ? "text-green-600"
-                : data?.averageRent && data?.averageRent <= 2000
-                ? "text-yellow-500"
-                : "text-red-500"
-            }`}
-          >{`$${data?.averageRent}`}</span>
-        </div>
-        <div className="flex items-center justify-between w-full whitespace-nowrap">
-          <p className="text-md ">{`Non-Violent Crime:`}</p>
-          <span className="font-bold pl-2">{`${data?.nonViolentCrime}/1000`}</span>
-        </div>
-        <div className="flex items-center justify-between w-full whitespace-nowrap">
-          <p className="text-md ">{`Violent Crime:`}</p>
-          <span className="font-bold pl-2">{`${data?.violentCrime}/1000`}</span>
-        </div>
-        <div className="flex items-center justify-between w-full">
-          <p className="text-md ">{`Crime Percentile: `}</p>
-          <span
-            className={`font-bold pl-2 ${
-              data?.crimePercentile && data?.crimePercentile <= 5
-                ? "text-red-500"
-                : data?.crimePercentile && data?.crimePercentile <= 15
-                ? "text-yellow-500"
-                : "text-green-600"
-            }`}
-          >{`${data?.crimePercentile}`}</span>
-        </div>
-        <div className="flex items-center justify-between w-full">
-          <p className="text-md ">{`Walkability: `}</p>
-          <span
-            className={`font-bold pl-2 ${
-              data?.walkScore && data?.walkScore <= 33
-                ? "text-red-500"
-                : data?.walkScore && data?.walkScore <= 66
-                ? "text-yellow-500"
-                : "text-green-600"
-            }`}
-          >{`${data?.walkScore}`}</span>
-        </div>
-        <div className="flex items-center justify-between w-full">
-          <p className="text-md ">{`Bikeability: `}</p>
-          <span
-            className={`font-bold pl-2 ${
-              data?.bikeScore && data?.bikeScore <= 33
-                ? "text-red-500"
-                : data?.bikeScore && data?.bikeScore <= 66
-                ? "text-yellow-500"
-                : "text-green-600"
-            }`}
-          >{`${data?.bikeScore}`}</span>
-        </div>
-        <div className="flex items-center justify-between w-full">
-          <p className="text-md ">{`Public Transit: `}</p>
-          <p
-            className={`font-bold pl-2 ${
-              data?.transitScore && data?.transitScore <= 33
-                ? "text-red-500"
-                : data?.transitScore && data?.transitScore <= 66
-                ? "text-yellow-500"
-                : "text-green-600"
-            }`}
-          >{`${data?.transitScore}`}</p>
-        </div>
-      </section> */}
+      </div>
+    </div>
+  );
+};
+
+const CitySelector: React.FC<{
+  citiesOrdered: any;
+}> = ({ citiesOrdered }) => {
+  return (
+    <div className="flex flex-col items-center bg-slate-900">
+      <Head>
+        <title>Our Favorite Cities</title>
+      </Head>
+      <h1 className="text-5xl font-extrabold leading-normal text-gray-300 md:text-[5rem] text-center">
+        {"Our Favorite Cities"}
+      </h1>
+      <h1
+        onClick={() => Router.push("/")}
+        className="text-2xl p-4 cursor-pointer pt-6 text-blue-500"
+      >
+        Click to play more
+      </h1>
+      <div className="flex flex-col w-full max-w-2xl border">
+        {citiesOrdered.map((currentCity: any, index: any) => {
+          return <CityListing city={currentCity} key={index} />;
+        })}
+      </div>
     </div>
   );
 };

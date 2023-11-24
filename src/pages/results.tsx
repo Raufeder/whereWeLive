@@ -2,8 +2,6 @@ import type { GetServerSideProps } from "next";
 import { prisma } from "../backend/utils/prisma";
 import { AsyncReturnType } from "../utils/ts-bs";
 import Router from "next/router";
-
-import Image from "next/image";
 import Head from "next/head";
 
 const getCitiesInOrder = async () => {

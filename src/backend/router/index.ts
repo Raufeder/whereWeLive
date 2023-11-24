@@ -35,24 +35,6 @@ export const appRouter = trpc
       return city;
     },
   })
-  .query("get-city-list", {
-    async resolve() {
-
-      const cityList = await prisma.city.findMany({
-        orderBy: { city: 'asc' },
-        select: {
-          id: true,
-          city: true,
-          regionCode: true,
-        },
-      })
-
-      if (!cityList)
-        throw new Error("Failed to find city");
-
-      return cityList;
-    },
-  })
   .mutation("cast-vote", {
     input: z.object({
       votedFor: z.number(),
