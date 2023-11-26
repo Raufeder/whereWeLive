@@ -10,6 +10,8 @@
     "ts-node": "ts-node --compiler-options \"{\\\"module\\\":\\\"commonjs\\\"}\""
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.17",
+    "@heroicons/react": "^2.0.18",
     "@prisma/client": "^4.6.1",
     "@tanstack/react-query": "^4.14.5",
     "@tippyjs/react": "^4.2.6",
