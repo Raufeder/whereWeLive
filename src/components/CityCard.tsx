@@ -15,6 +15,7 @@ type CityCardProps = {
   violentCrime: number;
   walkScore: number;
   id: number;
+  handleCardClick: any;
 };
 
 const CityCard: React.FC<CityCardProps> = ({
@@ -30,11 +31,12 @@ const CityCard: React.FC<CityCardProps> = ({
   violentCrime,
   walkScore,
   id,
+  handleCardClick,
 }) => {
   return (
     <section
-      onClick={() => Router.push(`/city/${id}`)}
       className=" hover:scale-105 lg:w-[600px] shadow-2xl flex flex-col items-center justify-center rounded  bg-slate-800 border-2 border-slate-700 p-6 duration-500 w-full text-gray-300"
+      onClick={() => handleCardClick(id)}
     >
       <h2 className="text-lg lg:text-3xl font-bold pb-4">{`${cityName}, ${region}`}</h2>
       <div className="flex items-center justify-between w-full">

@@ -4,6 +4,7 @@ import { prisma } from "../../backend/utils/prisma";
 import CityPage from "../../components/CityPage";
 import CitySelector from "../../components/CitySelector";
 import { AsyncReturnType } from "../../utils/ts-bs";
+import Head from "next/head";
 
 const getCitiesInOrder = async () => {
   return await prisma.city.findMany({
@@ -30,9 +31,16 @@ const City: React.FC<{
   city: CityResult;
 }> = ({ citiesOrdered, city }) => {
   return (
-    <div className="md:flex min-h-screen items-center justify-center p-4 w-full text-gray-300">
-      <CitySelector citiesOrdered={citiesOrdered} />
-      <CityPage city={city} />
+    <div className="md:flex items-center justify-start p-4 w-full text-gray-300">
+      <Head>
+        <title>{`Details | ${city?.city}, ${city?.regionCode}`}</title>
+      </Head>
+      <div className="mr-6">
+        <CitySelector citiesOrdered={citiesOrdered} />
+      </div>
+      <div>
+        <CityPage city={city} />
+      </div>
     </div>
   );
 };

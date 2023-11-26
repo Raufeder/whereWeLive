@@ -40,6 +40,10 @@ export default function Home() {
     refetch();
   };
 
+  const handleCardClick = (id: number) => {
+    voteForBetter(id);
+  };
+
   const fetchingNext = voteMutation.isLoading || isLoading;
 
   return (
@@ -70,14 +74,21 @@ export default function Home() {
                 violentCrime={cityPair.firstCity.violentCrime}
                 walkScore={cityPair.firstCity.walkScore}
                 id={cityPair.firstCity.id}
+                handleCardClick={handleCardClick}
               />
               <div className="pt-4">
                 <button
-                  onClick={() => voteForBetter(cityPair.firstCity.id)}
-                  className="inline-flex items-center px-3 py-1.5 bg-slate-800 hover:bg-slate-600 border-2 border-slate-700 shadow-sm font-medium rounded-full   focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  onClick={() => handleCardClick(cityPair.firstCity.id)}
+                  className="inline-flex items-center px-3 py-1.5 bg-slate-800 hover:bg-slate-600 border-2 border-slate-700 shadow-sm font-medium rounded-full   focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mr-3"
                   disabled={fetchingNext}
                 >
-                  Id Rather Live Here
+                  {"I'd Rather Live Here"}
+                </button>
+                <button
+                  onClick={() => Router.push(`/city/${cityPair.firstCity.id}`)}
+                  className="inline-flex items-center px-3 py-1.5 bg-slate-800 hover:bg-slate-600 border-2 border-slate-700 shadow-sm font-medium rounded-full   focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                >
+                  City Details Page
                 </button>
               </div>
             </div>
@@ -96,14 +107,21 @@ export default function Home() {
                 violentCrime={cityPair.secondCity.violentCrime}
                 walkScore={cityPair.secondCity.walkScore}
                 id={cityPair.secondCity.id}
+                handleCardClick={handleCardClick}
               />
               <div className="pt-4">
                 <button
-                  onClick={() => voteForBetter(cityPair.secondCity.id)}
-                  className="inline-flex items-center px-3 py-1.5 bg-slate-800 hover:bg-slate-600 border-2 border-slate-700 shadow-sm font-medium rounded-full   focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  onClick={() => handleCardClick(cityPair.secondCity.id)}
+                  className="inline-flex items-center px-3 py-1.5 bg-slate-800 hover:bg-slate-600 border-2 border-slate-700 shadow-sm font-medium rounded-full   focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mr-3"
                   disabled={fetchingNext}
                 >
-                  Id Rather Live Here
+                  {"I'd Rather Live Here"}
+                </button>
+                <button
+                  onClick={() => Router.push(`/city/${cityPair.secondCity.id}`)}
+                  className="inline-flex items-center px-3 py-1.5 bg-slate-800 hover:bg-slate-600 border-2 border-slate-700 shadow-sm font-medium rounded-full   focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                >
+                  City Details Page
                 </button>
               </div>
             </div>
