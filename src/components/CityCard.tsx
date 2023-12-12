@@ -73,7 +73,15 @@ const CityCard: React.FC<CityCardProps> = ({
               ? "text-yellow-500"
               : "text-green-600"
           }`}
-        >{`${crimePercentile}`}</span>
+        >{`${crimePercentile}${
+          crimePercentile === 1
+            ? "st"
+            : crimePercentile === 2
+            ? "nd"
+            : crimePercentile === 3
+            ? "rd"
+            : "th"
+        } Percentile`}</span>
       </div>
       <div className="flex items-center justify-between w-full">
         <p className="text-md ">{`Walkability: `}</p>
