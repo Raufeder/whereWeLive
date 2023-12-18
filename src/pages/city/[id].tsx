@@ -1,10 +1,12 @@
 import React from "react";
 import type { GetServerSideProps } from "next";
 import { prisma } from "../../backend/utils/prisma";
-import CityPage from "../../components/CityPage";
 import CitySelector from "../../components/CitySelector";
 import { AsyncReturnType } from "../../utils/ts-bs";
 import Head from "next/head";
+import CityCard from "../../components/CityCard";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
 
 const getCitiesInOrder = async () => {
   return await prisma.city.findMany({
@@ -31,17 +33,40 @@ const City: React.FC<{
   city: CityResult;
 }> = ({ citiesOrdered, city }) => {
   return (
-    <div className="md:flex items-center justify-start p-4 w-full text-gray-300">
-      <Head>
-        <title>{`Details | ${city?.city}, ${city?.regionCode}`}</title>
-      </Head>
-      <div className="mr-6">
-        <CitySelector citiesOrdered={citiesOrdered} />
+    <>
+      {" "}
+      <Navbar />
+      <div className="md:flex items-center justify-start p-4 w-full text-gray-300">
+        <Head>
+          <title>{`Details | ${city?.city}, ${city?.regionCode}`}</title>
+          <meta name="description" content="Where to live" />
+          <link rel="icon" href="/favIcon.png" />
+        </Head>
+        <div className="mr-6 mb-32">
+          <CitySelector citiesOrdered={citiesOrdered} />
+        </div>
+        <div>
+          {city ? (
+            <CityCard
+              cityName={city.city}
+              averageRent={city.averageRent}
+              bikeScore={city.bikeScore}
+              crimePercentile={city.crimePercentile}
+              nonViolentCrime={city.nonViolentCrime}
+              population={city.population}
+              region={city.region}
+              regionCode={city.regionCode}
+              transitScore={city.transitScore}
+              violentCrime={city.violentCrime}
+              walkScore={city.walkScore}
+              id={city.id}
+              clickableStyles={true}
+            />
+          ) : null}
+        </div>
       </div>
-      <div>
-        <CityPage city={city} />
-      </div>
-    </div>
+      <Footer />
+    </>
   );
 };
 
