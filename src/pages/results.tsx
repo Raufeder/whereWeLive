@@ -79,12 +79,6 @@ const ResultsPage: React.FC<{
         <h1 className="text-5xl font-extrabold leading-normal text-gray-300 md:text-[5rem] text-center">
           {"Our Favorite Cities"}
         </h1>
-        <h1
-          onClick={() => Router.push("/")}
-          className="text-2xl p-4 cursor-pointer pt-6 text-blue-500"
-        >
-          Click to play more
-        </h1>
         <div className="flex flex-col w-full max-w-2xl border">
           {props.city
             .sort((a, b) => {

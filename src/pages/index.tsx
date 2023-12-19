@@ -142,14 +142,6 @@ export default function Home() {
               Loading...
             </div>
           )}
-          <div className="flex h-full w-full items-end justify-center pt-6 text-2xl text-blue-500">
-            <div
-              className="cursor-pointer"
-              onClick={() => Router.push("/results")}
-            >
-              See Our Favorite Cities
-            </div>
-          </div>
         </div>
       </div>
       <Footer />
