@@ -15,7 +15,8 @@ type CityCardProps = {
   violentCrime: number;
   walkScore: number;
   id: number;
-  handleCardClick: any;
+  handleCardClick?: any;
+  clickableStyles?: boolean;
 };
 
 const CityCard: React.FC<CityCardProps> = ({
@@ -32,11 +33,37 @@ const CityCard: React.FC<CityCardProps> = ({
   walkScore,
   id,
   handleCardClick,
+  clickableStyles,
 }) => {
+  const correctNumberEnding = (number: number) => {
+    if (number <= 20) {
+      if (number === 1) {
+        return "st";
+      } else if (number === 2) {
+        return "nd";
+      } else if (number === 3) {
+        return "rd";
+      }
+      return "th";
+    } else if (number > 20) {
+      const arrayNumbers: string[] = number.toString().split("");
+      const lastDigit: number = Number(arrayNumbers[arrayNumbers.length - 1]);
+      if (lastDigit === 1) {
+        return "st";
+      } else if (lastDigit === 2) {
+        return "nd";
+      } else if (lastDigit === 3) {
+        return "rd";
+      }
+      return "th";
+    }
+  };
   return (
     <section
-      className=" hover:scale-105 lg:w-[600px] shadow-2xl flex flex-col items-center justify-center rounded  bg-slate-800 border-2 border-slate-700 p-6 duration-500 w-full text-gray-300"
-      onClick={() => handleCardClick(id)}
+      className={` ${
+        clickableStyles ? "hover:scale-105 cursor-pointer" : ""
+      } lg:w-[600px] shadow-2xl flex flex-col items-center justify-center rounded  bg-slate-800 border-2 border-slate-700 p-6 duration-500 w-full text-gray-300`}
+      onClick={() => handleCardClick && handleCardClick(id)}
     >
       <h2 className="text-lg lg:text-3xl font-bold pb-4">{`${cityName}, ${region}`}</h2>
       <div className="flex items-center justify-between w-full">
@@ -73,15 +100,9 @@ const CityCard: React.FC<CityCardProps> = ({
               ? "text-yellow-500"
               : "text-green-600"
           }`}
-        >{`${crimePercentile}${
-          crimePercentile === 1
-            ? "st"
-            : crimePercentile === 2
-            ? "nd"
-            : crimePercentile === 3
-            ? "rd"
-            : "th"
-        } Percentile`}</span>
+        >{`${crimePercentile}${correctNumberEnding(
+          crimePercentile
+        )} Percentile`}</span>
       </div>
       <div className="flex items-center justify-between w-full">
         <p className="text-md ">{`Walkability: `}</p>
